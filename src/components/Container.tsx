@@ -13,7 +13,7 @@ export default function () {
 
     let mousedownId = useRef<any>();
 
-    const { width, height, stories, loop, currentIndex, isPaused } = useContext<GlobalCtx>(GlobalContext)
+    const { width, height, stories, loop, currentIndex, isPaused, onClickNextStory, onClickPrevStory } = useContext<GlobalCtx>(GlobalContext)
     useEffect(() => {
         if (typeof currentIndex === 'number') {
             if (currentIndex >= 0 && currentIndex < stories.length) {
@@ -71,7 +71,13 @@ export default function () {
         if (pause) {
             toggleState('play')
         } else {
-            type === 'next' ? next() : previous()
+            if (type === "next") {
+                onClickNextStory && onClickNextStory(currentId);
+                next();
+            } else {
+                onClickPrevStory && onClickPrevStory(currentId);
+                previous();
+            }
         }
     }
 

@@ -11,7 +11,9 @@ export interface ReactInstaStoriesProps {
     currentIndex?: number,
     onAllStoriesEnd?: Function,
     onStoryStart?: Function,
-    onStoryEnd?: Function
+    onStoryEnd?: Function,
+    onClickNextStory?: (currentStoryIndex: number) => void;
+    onClickPrevStory?: (currentStoryIndex: number) => void;
 }
 
 export interface GlobalCtx extends ReactInstaStoriesProps { }
